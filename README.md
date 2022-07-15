@@ -20,7 +20,7 @@ npm i @zentuari/json-streaming
 
 ## Usage
 
-Stream JSON arrays as small pieces
+Stream JSON arrays in small portions
 ```javascript
 //Stream
 
