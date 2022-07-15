@@ -10,6 +10,17 @@
   "license": "ISC",
   "dependencies": {
   },
+  "keywords": [
+    "json",
+    "streaming",
+    "jsonstream",
+    "stream",
+    "parse",
+    "read file",
+    "write file",
+    "read json",
+    "stream json"
+  ],
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
