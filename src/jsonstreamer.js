@@ -58,11 +58,38 @@ const readwrite = {
         const writable = fs.WriteStream(path);
         stream.pipe(writable);
     },
+    streamToFileSync: (stream, path) => {
+        return new Promise((resolve, reject) => {
+            const writable = fs.WriteStream(path)
+            stream.pipe(writable);
+            stream.on('error', (err) => reject(err));
+            stream.on('end', ()=>{
+                resolve()
+            });
+        })
+    },
     readJSON: (path) => {
-        return fs.readFileSync(path, {encoding:'utf8', flag:'r'});
+            return new Promise((resolve, reject) => {
+                fs.readFile(path, (err, data) => {
+                    if (err) reject(err);
+                resolve(JSON.parse(data.toString()));
+            });
+        });
+    
     },
     writeJSON: (json, path) => {
-        fs.writeFileSync(path, json);
+        return fs.writeFile(path, JSON.stringify(json), (err) => {
+            if (err) throw err;
+            return
+        });
+    },
+    writeJSONSync: (json, path) => {
+        return new Promise((resolve, reject) => {
+            fs.writeFile(path, JSON.stringify(json), (err) => {
+                if (err) reject(err);
+                resolve();
+            });
+        })
     }
 }
 
